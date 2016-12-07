@@ -1,3 +1,7 @@
+;Exemplo de programacao em Assembly com WinASM 
+;Ivan S. Vargas | www.is5.com.br | contato@is5.com.br
+;01/2016
+
 .386
 .MODEL FLAT,STDCALL
 
