@@ -32,4 +32,4 @@ includelib user32.lib
 	erro:
    		invoke MessageBox, NULL, addr ERRO,addr CAPTION,MB_OK
    		invoke ExitProcess,NULL
-	end start
+	end start 
