@@ -1,3 +1,7 @@
+;Exemplo de programacao em Assembly com WinASM 
+;Ivan S. Vargas | www.is5.com.br | contato@is5.com.br
+;01/2016
+
 .386
 .MODEL FLAT, STDCALL
 
@@ -11,10 +15,10 @@ includelib user32.lib
 .DATA
 	ARQUIVO		db	 "TESTE.TXT",0
 	CAPTION		db	 "Atencao!",0
-	OK			db	 "Arquivo GRAVADO com sucesso",0
+	OK	        db	 "Arquivo GRAVADO com sucesso",0
 	ERRO		db	 "Impossivel gravar arquivo",0
 	TEXTO		db	 "ARQUIVO GRAVADO VIA ASSEMBLY",0
-	SUCESSO	db	 "Arquivo ESCRITO com sucesso!",0
+	SUCESSO	        db	 "Arquivo ESCRITO com sucesso!",0
 	
 	WRITED		dd	0
 	
@@ -23,18 +27,19 @@ includelib user32.lib
 
 .CODE
 	start: 
-	         ; HANDLE CreateFile(
-		;    LPCTSTR  lpFileName,                                                   // address of name of the file 
-		;    DWORD  dwDesiredAccess,                                          // access (read-write) mode 
-		;    DWORD  dwShareMode,	                                           // share mode 
+		; assinatura da funcao da API do WIndows
+	        ; HANDLE CreateFile(
+		;    LPCTSTR  lpFileName,                                            // address of name of the file 
+		;    DWORD  dwDesiredAccess,                                         // access (read-write) mode 
+		;    DWORD  dwShareMode,	                                     // share mode 
 		;    LPSECURITY_ATTRIBUTES  lpSecurityAttributes,    // address of security descriptor 
 		;    DWORD  dwCreationDistribution,                                  // how to create 
 		;    DWORD  dwFlagsAndAttributes,                                    // file attributes 
 		;    HANDLE  hTemplateFile 	                                           // handle of file with attributes to copy  
 		;);
     		invoke CreateFile, addr ARQUIVO, GENERIC_READ OR GENERIC_WRITE, FILE_SHARE_READ OR FILE_SHARE_WRITE,  NULL,CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL
-    		
-    		mov hFile,eax
+ 
+ 		mov hFile,eax
     		cmp hFile, INVALID_HANDLE_VALUE
     		jz erro
     		invoke MessageBox, NULL, addr OK, addr CAPTION , MB_OK
